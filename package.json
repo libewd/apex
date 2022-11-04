@@ -1,0 +1,16 @@
+{
+  "name": "apex",
+  "version": "1.0.0",
+  "description": "Extensive SDK for Next.js",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "test": "turbo test"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "turbo": "^1.6.3"
+  }
+}
