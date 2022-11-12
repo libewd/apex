@@ -1,11 +1,11 @@
 {
   "name": "@apex/http",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "ncc build src/index.ts -m -s --license licenses.txt",
-    "dev": "ncc build -w src/index.ts -m -s --license licenses.txt",
+    "build": "ncc build src/index.ts -o dist/src/ -m -s --license licenses.txt",
+    "dev": "ncc build -w src/index.ts -o dist/src/ -m -s --license licenses.txt",
     "test": "jest"
   },
   "devDependencies": {
