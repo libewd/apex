@@ -4,10 +4,14 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 export function get(handler: ApexHandler) {
   return (req: NextApiRequest, res: NextApiResponse) => {
-    if (req.method.toLowerCase() !== 'get') {
-      return res.status(404).send('Not Found')
-    }
-    const apexRes = handler(new Apex(req, res))
-    res.send(apexRes.string())
+    const apex = new Apex(req, res)
+    Promise.resolve()
+      .then(() => {
+        if (!apex.isGetRequest) return apex.notFound()
+        return handler(apex)
+      })
+      .then((apexRes) => {
+        apexRes.respond(res)
+      })
   }
 }

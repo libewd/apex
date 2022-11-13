@@ -1,4 +1,4 @@
 import { Apex } from './apex'
 import { ApexResponse } from './response'
 
-export type ApexHandler = (a: Apex) => ApexResponse
+export type ApexHandler = (apex: Apex) => ApexResponse
