@@ -1,11 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { ApexJsonResponse, ApexStatusResponse } from './response'
 
-export class Apex {
+export class Apex<T = any> {
   constructor(private req: NextApiRequest, private res: NextApiResponse) {}
 
+  query(key: string) {
+    return this.req.query[key]
+  }
+
   json(value: unknown) {
-    return new ApexJsonResponse(value)
+    return new ApexJsonResponse(this.res, value)
   }
 
   notFound() {
@@ -13,18 +17,30 @@ export class Apex {
   }
 
   status(code: number, text: string) {
-    return new ApexStatusResponse(code, text)
+    return new ApexStatusResponse(this.res, code, text)
   }
 
   get isGetRequest() {
     return this.isRequestOfMethod('get')
   }
 
+  get isPostRequest() {
+    return this.isRequestOfMethod('post')
+  }
+
+  get isPatchRequest() {
+    return this.isRequestOfMethod('patch')
+  }
+
+  get isDeleteRequest() {
+    return this.isRequestOfMethod('delete')
+  }
+
   /**
    * We compare the HTTP method of the incoming request with the given argument.
    * It is important we lowercase them both before we compare.
    *
-   * https://www.rfc-editor.org/rfc/rfc7231#section-4.3
+   * https://httpwg.org/specs/rfc9110.html#methods
    *
    * @param method An HTTP method, such as GET or OPTIONS.
    * @returns `true`, if the request is of `method`, otherwise `false`.

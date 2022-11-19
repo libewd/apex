@@ -1,0 +1,6 @@
+{
+  "name": "@apex/apex",
+  "version": "0.1.0",
+  "license": "MIT",
+  "bin": "bin/apex"
+}

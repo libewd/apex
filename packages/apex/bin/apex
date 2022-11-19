@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+function apex_help {
+  echo "Apex"
+  echo
+  echo ""
+
+  exit 1
+}
+
+if [ $# -gt 0 ]; then
+  if [ "$1" == "help" ]; then
+    apex_help
+  fi
+else
+  apex_help
+fi
+
+case "$1" in
+  new*)
+  echo "New"
+  ;;
+esac

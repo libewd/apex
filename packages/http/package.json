@@ -1,11 +1,12 @@
 {
   "name": "@apex/http",
   "version": "0.1.0",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "ncc build src/index.ts -o dist/src/ -m -s --license licenses.txt",
-    "dev": "ncc build -w src/index.ts -o dist/src/ -m -s --license licenses.txt",
+    "build": "ncc build src/index.ts -m --license licenses.txt",
+    "dev": "ncc build src/index.ts -w -m --license licenses.txt",
     "test": "jest"
   },
   "devDependencies": {
@@ -16,5 +17,7 @@
     "ts-jest": "^29.0.3",
     "typescript": "^4.8.4"
   },
-  "license": "MIT"
+  "peerDependencies": {
+    "next": "13.0.1"
+  }
 }

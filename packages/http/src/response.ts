@@ -1,28 +1,32 @@
 import { NextApiResponse } from 'next'
 
-export interface ApexCanRespond {
-  respond: (res: NextApiResponse) => void
+interface ApexCanRespond {
+  respond: () => void
 }
 
 export type ApexResponse = ApexCanRespond
 
-export class ApexStatusResponse implements ApexCanRespond {
-  constructor(private code: number, private text: string) {}
+export class ApexJsonResponse implements ApexCanRespond {
+  constructor(private res: NextApiResponse, private value: unknown) {}
 
-  respond(res: NextApiResponse) {
-    res.status(this.code).send(this.text)
+  headers() {
+    this.res.setHeader('Content-Type', 'application/json')
+  }
+
+  respond() {
+    this.headers()
+    this.res.send(JSON.stringify(this.value))
   }
 }
 
-export class ApexJsonResponse implements ApexCanRespond {
-  constructor(private value: unknown) {}
+export class ApexStatusResponse implements ApexCanRespond {
+  constructor(
+    private res: NextApiResponse,
+    private code: number,
+    private text: string
+  ) {}
 
-  headers(res: NextApiResponse) {
-    res.setHeader('Content-Type', 'application/json')
-  }
-
-  respond(res: NextApiResponse) {
-    this.headers(res)
-    res.send(JSON.stringify(this.value))
+  respond() {
+    this.res.status(this.code).send(this.text)
   }
 }

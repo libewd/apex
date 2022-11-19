@@ -4,9 +4,11 @@ importers:
 
   .:
     specifiers:
+      '@apex/apex': workspace:^0.1.0
       prettier: ^2.7.1
       turbo: ^1.6.3
     devDependencies:
+      '@apex/apex': link:packages/apex
       prettier: 2.7.1
       turbo: 1.6.3
 
@@ -29,6 +31,9 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       typescript: 4.8.4
+
+  packages/apex:
+    specifiers: {}
 
   packages/http:
     specifiers:
